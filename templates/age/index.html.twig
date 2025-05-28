@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calcul d'âge{% endblock %}
+
+{% block body %}
+    <button onclick="calculerAge()">Calculer mon âge</button>
+    <p id="id_age"></p>
+
+    <script>
+        function calculerAge() {
+            let anneeNaissance = prompt("Entrez votre année de naissance:");
+            
+            if (anneeNaissance === null || isNaN(anneeNaissance)) {
+                alert("Veuillez entrer une année valide!");
+                return;
+            }
+            
+            let anneeActuelle = new Date().getFullYear();
+            let age = anneeActuelle - parseInt(anneeNaissance);
+            
+            document.getElementById("id_age").textContent = "Vous avez " + age + " ans.";
+        }
+    </script>
+    {% block body %}
+    {# ... code précédent ... #}
+
+    <p id="paragraphe">Survolez ce texte pour voir l'effet.</p>
+
+    <script>
+        const paragraphe = document.getElementById('paragraphe');
+        
+        paragraphe.addEventListener('mouseover', function() {
+            this.style.fontSize = '30px';
+            this.style.fontStyle = 'italic';
+            this.style.color = 'red';
+        });
+        
+        paragraphe.addEventListener('mouseout', function() {
+            this.style.fontSize = '';
+            this.style.fontStyle = '';
+            this.style.color = '';
+        });
+    </script>
+
+{% endblock %}

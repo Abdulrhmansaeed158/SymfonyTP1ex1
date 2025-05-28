@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des BUT{% endblock %}
+
+{% block body %}
+    <h1>Liste des BUT de l'IUT de Roanne</h1>
+    <ul id="listeBut">
+        {% for but in buts %}
+            <li>{{ but }}</li>
+        {% endfor %}
+    </ul>
+    
+    <button onclick="ajouterBut()">Ajouter un BUT</button>
+    <button onclick="supprimerDernierBut()">Supprimer le dernier</button>
+
+    <script>
+        function ajouterBut() {
+            const nouveauBut = prompt("Entrez le nom du nouveau BUT:");
+            if (nouveauBut) {
+                const liste = document.getElementById('listeBut');
+                const element = document.createElement('li');
+                element.textContent = nouveauBut;
+                liste.appendChild(element);
+            }
+        }
+        
+        function supprimerDernierBut() {
+            const liste = document.getElementById('listeBut');
+            if (liste.children.length > 0) {
+                liste.removeChild(liste.lastElementChild);
+            }
+        }
+    </script>
+{% endblock %}
